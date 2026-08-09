@@ -1,65 +1,103 @@
 import React from 'react';
-import { BookOpen, Brain, Code2 } from 'lucide-react';
+import { Server, Database, GitBranch, Trophy } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
+import SectionTitle from './SectionTitle';
 
-interface AboutSectionProps {
-  profileImage: string;
-}
+const cards = [
+  {
+    icon: <Server className="w-4 h-4" />,
+    color: 'blue',
+    title: 'Backend Development',
+    sub: 'Java, Spring Boot, REST APIs',
+    delay: 200,
+  },
+  {
+    icon: <Database className="w-4 h-4" />,
+    color: 'indigo',
+    title: 'Database Engineering',
+    sub: 'PostgreSQL, SQL, Migrations',
+    delay: 300,
+  },
+  {
+    icon: <GitBranch className="w-4 h-4" />,
+    color: 'blue',
+    title: 'Production Experience',
+    sub: 'Real systems, real users, real issues',
+    delay: 400,
+  },
+  {
+    icon: <Trophy className="w-4 h-4" />,
+    color: 'amber',
+    title: 'Hackathon Wins',
+    sub: 'Hacknovate 6.0 · IIT Indore Fluxus',
+    delay: 500,
+  },
+];
 
-const AboutSection: React.FC<AboutSectionProps> = ({ profileImage }) => {
+const colorMap: Record<string, string> = {
+  blue: 'bg-blue-500/15 text-blue-400',
+  indigo: 'bg-indigo-500/15 text-indigo-400',
+  amber: 'bg-amber-500/15 text-amber-400',
+};
+
+const AboutSection: React.FC = () => {
   return (
-    <section className="py-20 bg-gray-900" id="about">
+    <section className="py-24 bg-gray-900" id="about">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <ScrollReveal>
-            <h2 className="text-3xl font-bold text-center mb-12">About Me</h2>
-          </ScrollReveal>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <ScrollReveal delay={150}>
-              <div className="relative">
-                <div className="w-full h-[400px] rounded-lg overflow-hidden">
-                  <img 
-                    src={profileImage} 
-                    alt="Profile" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                {/* <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-blue-500 rounded-lg opacity-20"></div> */}
-              </div>
-            </ScrollReveal>
-            <div>
-              <ScrollReveal delay={300}>
-                <h3 className="text-2xl font-semibold mb-4">Hii, I'm Tannisa </h3>
-              </ScrollReveal>
-              <ScrollReveal delay={450}>
-                <p className="text-gray-300 mb-6">
-                  I have a strong passion for full-stack development, machine learning, and AI-driven applications. 
-                  With experience in React, Flask, Express.js, MongoDB, and Tailwind CSS, I enjoy solving complex 
-                  problems and creating efficient, user-friendly solutions.
-                  Beyond coding, I am always eager to learn new technologies, explore innovative ideas, and improve 
-                  my skills. I thrive in dynamic environments where I can collaborate, innovate, and make an impact.
+        <SectionTitle title="About" />
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-10 items-start">
+            {/* Main text */}
+            <div className="md:col-span-2 space-y-5">
+              <ScrollReveal delay={150}>
+                <p className="text-gray-300 leading-relaxed text-[15px]">
+                  I'm a backend-focused software engineer working primarily with Java, Spring Boot and PostgreSQL.
+                  My experience includes building production features, implementing complex business logic,
+                  optimizing SQL queries, managing database migrations and debugging real-world production issues.
                 </p>
               </ScrollReveal>
-              <div className="space-y-4">
-                <ScrollReveal delay={600}>
-                  <div className="flex items-center gap-3">
-                    <BookOpen className="text-blue-400" />
-                    <span>Currently pursuing B.Tech in CSE</span>
+              <ScrollReveal delay={250}>
+                <p className="text-gray-400 leading-relaxed text-[15px]">
+                  I'm particularly interested in understanding what happens beneath the API layer — how databases
+                  behave under load, how concurrent requests are handled, how systems remain reliable, and how
+                  backend services scale.
+                </p>
+              </ScrollReveal>
+              <ScrollReveal delay={350}>
+                <p className="text-gray-400 leading-relaxed text-[15px]">
+                  I'm currently expanding into system design and distributed systems by building and studying
+                  backend systems beyond simple CRUD applications.
+                </p>
+              </ScrollReveal>
+
+              <ScrollReveal delay={450}>
+                <div className="mt-4 inline-flex items-start gap-4 p-4 bg-gray-800/60 border border-gray-700/60 rounded-xl">
+                  <div className="shrink-0 w-8 h-8 rounded-lg bg-blue-500/15 flex items-center justify-center">
+                    <span className="text-blue-400 text-xs font-bold">B</span>
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold text-sm">B.Tech Computer Science & Engineering</p>
+                    <p className="text-gray-500 text-sm mt-0.5">KIIT University · CGPA 8.8 · Graduating 2026</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+
+            {/* Sidebar */}
+            <div className="space-y-3">
+              {cards.map((card, i) => (
+                <ScrollReveal key={i} delay={card.delay}>
+                  <div className="flex items-start gap-3 p-4 bg-gray-800/40 border border-gray-700/50 rounded-xl hover:border-gray-600 transition-colors">
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${colorMap[card.color]}`}>
+                      {card.icon}
+                    </div>
+                    <div>
+                      <p className="text-white text-sm font-semibold leading-tight">{card.title}</p>
+                      <p className="text-gray-500 text-xs mt-0.5">{card.sub}</p>
+                    </div>
                   </div>
                 </ScrollReveal>
-                <ScrollReveal delay={700}>
-                  <div className="flex items-center gap-3">
-                    <Brain className="text-blue-400" />
-                    <span>Focused on AI & Machine Learning</span>
-                  </div>
-                </ScrollReveal>
-                <ScrollReveal delay={800}>
-                  <div className="flex items-center gap-3">
-                    <Code2 className="text-blue-400" />
-                    <span>Full-stack Development Enthusiast</span>
-                  </div>
-                </ScrollReveal>
-              </div>
+              ))}
             </div>
           </div>
         </div>

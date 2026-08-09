@@ -1,26 +1,5 @@
 /* Base animation classes */
 
-@layer demo {
-  @keyframes scale-a-lil {
-    from {
-      scale: 0.5;
-      opacity: 0.3;
-    }
-    to {
-      scale: 1;
-      opacity: 1;
-    }
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    section {
-      animation: scale-a-lil linear both;
-      animation-timeline: view();
-      animation-range: 25vh 75vh;
-    }
-  }
-}
-
 .reveal-hidden {
   opacity: 0;
   transform: translateY(30px);
